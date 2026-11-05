@@ -50,11 +50,17 @@
   .btn-pink{background:var(--rose);color:#fff}
   .btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.8)}
   .burger{display:none;background:none;border:0;color:#fff;font-size:1.8rem;cursor:pointer}
+  .actions{display:flex;align-items:center;gap:10px}
+  .btn-fb{background:#1877f2;color:#fff}
+  .btn-fb svg{width:20px;height:20px;fill:currentColor;flex:none}
+  .fb-icon{width:42px;height:42px;padding:0;justify-content:center;border-radius:50%}
+  .fb-icon:hover{box-shadow:0 6px 16px rgba(0,0,0,.3)}
   @media (max-width:920px){
     .menu{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bordeaux-dark);max-height:0;overflow:hidden;transition:max-height .3s}
     .menu.open{max-height:480px}
     .menu li a{display:block;padding:14px 20px;border-top:1px solid rgba(255,255,255,.1)}
-    .burger{display:block}
+    .burger{display:block;order:3}
+    .actions{margin-left:auto}
     .nav .btn-white{display:none}
   }
 
@@ -169,7 +175,10 @@
       <li><a href="#soirees" class="pink">✨ Soirées Cabaret</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="tel:+33470327750" class="btn btn-white">📞 04 70 32 77 50</a>
+    <div class="actions">
+      <a href="tel:+33470327750" class="btn btn-white">📞 04 70 32 77 50</a>
+      <a href="https://www.facebook.com/jeanfrancois.laurent.73744" class="btn btn-fb fb-icon" target="_blank" rel="noopener" aria-label="Suivez-nous sur Facebook" title="Suivez-nous sur Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg></a>
+    </div>
   </div>
 </header>
 
@@ -319,6 +328,7 @@
 
     <div class="cab-ctas reveal">
       <a href="tel:+33470327750" class="btn btn-pink">📞 Connaître la prochaine date</a>
+      <a href="https://www.facebook.com/jeanfrancois.laurent.73744" class="btn btn-fb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>Les dates sur Facebook</a>
       <a href="#contact" class="btn btn-ghost">Nous trouver</a>
     </div>
     <p class="notice">Les dates des prochaines soirées sont annoncées au comptoir et par téléphone. Soirées réservées aux personnes majeures. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
@@ -359,6 +369,7 @@
     <a href="#accueil" class="logo">À l'Orée du Bois</a>
     <p>Hôtel · Restaurant · Bar · Café · Tabac — Chez Doudou &amp; Lolo</p>
     <p>20 avenue de l'Europe, 03700 Brugheas · <a href="tel:+33470327750">04 70 32 77 50</a></p>
+    <p style="margin-top:16px"><a href="https://www.facebook.com/jeanfrancois.laurent.73744" class="btn btn-fb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>Suivez-nous sur Facebook</a></p>
     <p style="opacity:.6;margin-top:14px">© <span id="y"></span> À l'Orée du Bois. L'abus d'alcool est dangereux pour la santé.</p>
   </div>
 </footer>
