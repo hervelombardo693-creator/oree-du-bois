@@ -149,6 +149,13 @@
   .day p + p{border-top:1px dashed #e0d4c4;padding-top:8px}
   .day .price{display:inline-block;background:var(--bordeaux);color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:700;margin-bottom:8px}
   .day .star{font-family:"Playfair Display",serif;font-size:1.4rem;color:var(--bordeaux);font-weight:800;border:0;padding:0}
+  .formules{display:grid;grid-template-columns:1.2fr repeat(4,1fr);margin-top:22px;background:var(--bordeaux);color:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .formules > div{padding:20px 14px;text-align:center;border-left:1px solid rgba(255,255,255,.18)}
+  .formules-title{font-family:"Playfair Display",serif;font-weight:800;font-size:1.3rem;line-height:1.2;display:flex;flex-direction:column;justify-content:center;border-left:0 !important;background:var(--bordeaux-dark)}
+  .formules-title small{font-family:Inter,sans-serif;font-weight:500;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin-top:4px}
+  .formule strong{display:block;font-family:"Playfair Display",serif;font-size:1.9rem;line-height:1.1}
+  .formule span{font-size:.9rem;opacity:.9}
+  @media (max-width:700px){.formules{grid-template-columns:repeat(2,1fr)}.formules-title{grid-column:1/-1}.formules > div:nth-child(2n){border-left:0}.formules > div:nth-child(n+2){border-top:1px solid rgba(255,255,255,.18)}}
   .menu-notes{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
   .menu-notes span{background:#fff;border:1px solid #e6dccf;border-radius:999px;padding:8px 16px;font-size:.92rem;color:var(--gris)}
 
@@ -317,6 +324,13 @@
       <div class="day"><h3>Mercredi</h3><p>Pâté aux pommes de terre</p><p>Sauté de dinde à la provençale, pâtes</p></div>
       <div class="day"><h3>Jeudi</h3><p>Jambon, macédoine</p><p>Dos de colin, riz</p></div>
       <div class="day"><h3>Vendredi</h3><span class="price">Plat à 14 €</span><p class="star">Pot-au-feu</p></div>
+    </div>
+    <div class="formules reveal">
+      <div class="formules-title">Nos formules<br><small>du lundi au jeudi</small></div>
+      <div class="formule"><strong>10,50 €</strong><span>Plat du jour</span></div>
+      <div class="formule"><strong>14 €</strong><span>2 plats</span></div>
+      <div class="formule"><strong>16 €</strong><span>3 plats</span></div>
+      <div class="formule"><strong>18 €</strong><span>4 plats</span></div>
     </div>
     <div class="menu-notes reveal">
       <span>🍟 Tous nos plats sont servis avec frites ou légumes du jour</span>
