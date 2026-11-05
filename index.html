@@ -32,10 +32,11 @@
   h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.15;margin:0 0 .5em}
   h2{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--bordeaux)}
   .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:700;color:var(--bordeaux);margin-bottom:.6rem;display:block}
-  section{padding:clamp(56px,9vw,100px) 0}
+  section{padding:clamp(56px,9vw,100px) 0;scroll-margin-top:60px}
 
   /* ---------- Header ---------- */
   header{position:sticky;top:0;z-index:50;background:var(--bordeaux);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+  .nav.wrap{width:min(1290px,100% - 32px)}
   .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
   .logo{font-family:"Playfair Display",serif;font-weight:800;font-size:1.35rem;text-decoration:none;white-space:nowrap}
   .logo small{display:block;font-family:Inter,sans-serif;font-weight:500;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
@@ -63,7 +64,7 @@
     .nav .btn-booking{width:42px;height:42px;padding:0;justify-content:center;border-radius:50%}
     .nav .btn-booking .lbl{display:none}
   }
-  @media (max-width:1120px){
+  @media (max-width:1240px){
     .menu{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bordeaux-dark);max-height:0;overflow:hidden;transition:max-height .3s}
     .menu.open{max-height:480px}
     .menu li a{display:block;padding:14px 20px;border-top:1px solid rgba(255,255,255,.1)}
@@ -115,6 +116,34 @@
   .pizza h3{font-size:clamp(1.5rem,3vw,2rem);margin:0 0 .2em}
   .pizza p{margin:0;opacity:.9}
   .pizza .big{font-family:"Playfair Display",serif;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:800;line-height:1}
+
+  /* ---------- Menu de la semaine ---------- */
+  .week{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:30px}
+  @media (max-width:1000px){.week{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.week{grid-template-columns:1fr}}
+  .day{background:#fff;border-radius:var(--radius);padding:22px 20px;box-shadow:0 4px 14px rgba(0,0,0,.06);text-align:center;border-top:4px solid var(--bordeaux)}
+  .day h3{font-family:Inter,sans-serif;font-size:.85rem;letter-spacing:.25em;text-transform:uppercase;color:#d33a3a;margin:0 0 12px}
+  .day p{margin:0 0 8px;font-weight:500}
+  .day p + p{border-top:1px dashed #e0d4c4;padding-top:8px}
+  .day .price{display:inline-block;background:var(--bordeaux);color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:700;margin-bottom:8px}
+  .day .star{font-family:"Playfair Display",serif;font-size:1.4rem;color:var(--bordeaux);font-weight:800;border:0;padding:0}
+  .menu-notes{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+  .menu-notes span{background:#fff;border:1px solid #e6dccf;border-radius:999px;padding:8px 16px;font-size:.92rem;color:var(--gris)}
+
+  /* ---------- Carte des pizzas ---------- */
+  .pizza-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+  .flag{height:6px;width:120px;border-radius:3px;background:linear-gradient(90deg,#009246 33%,#fff 33% 66%,#ce2b37 66%);box-shadow:0 0 0 1px #e0d4c4;margin:10px 0 0}
+  .pizzas{display:grid;grid-template-columns:1fr 1fr;gap:6px 48px;margin-top:30px;background:#fff;border-radius:var(--radius);padding:clamp(20px,4vw,40px);box-shadow:var(--shadow)}
+  @media (max-width:800px){.pizzas{grid-template-columns:1fr}}
+  .pz{padding:12px 0;border-bottom:1px dashed #e6dccf}
+  .pz-top{display:flex;align-items:baseline;gap:10px}
+  .pz-name{font-family:"Playfair Display",serif;font-weight:800;color:var(--bordeaux);font-size:1.12rem}
+  .pz-dots{flex:1;border-bottom:2px dotted #cbb9a5;transform:translateY(-4px)}
+  .pz-price{font-weight:700;white-space:nowrap}
+  .pz p{margin:2px 0 0;color:var(--gris);font-size:.93rem}
+  .pz .tag{font-family:Inter,sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:#ffe9b8;color:#7a4b00;border-radius:999px;padding:2px 8px;vertical-align:middle;margin-left:6px}
+  .pz.special{grid-column:1/-1;border:2px solid var(--bordeaux);border-radius:12px;padding:14px 18px;margin-top:12px;background:var(--creme)}
+  .base-note{text-align:center;font-style:italic;color:var(--bordeaux);font-family:"Playfair Display",serif;font-size:1.15rem;margin-top:24px}
 
   /* ---------- Soirées cabaret ---------- */
   .cabaret{background:radial-gradient(circle at 20% 10%,#5a1740 0,var(--rose-fond) 55%);color:#fff;position:relative;overflow:hidden}
@@ -178,6 +207,8 @@
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
     <ul class="menu">
       <li><a href="#restaurant">Restaurant</a></li>
+      <li><a href="#menus">Menus</a></li>
+      <li><a href="#pizzas">Pizzas</a></li>
       <li><a href="#bar">Bar &amp; Tabac</a></li>
       <li><a href="#hotel">Hôtel</a></li>
       <li><a href="#soirees" class="pink">✨ Soirées Cabaret</a></li>
@@ -242,8 +273,68 @@
         <div class="big">Mer. &amp; Ven.</div>
         <p>de 18h00 à 21h30</p>
       </div>
-      <a href="tel:+33470327750" class="btn btn-white">Commander</a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="#pizzas" class="btn btn-ghost">Voir la carte</a>
+        <a href="tel:+33470327750" class="btn btn-white">Commander</a>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ MENU DE LA SEMAINE ============ -->
+<section id="menus" class="alt">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow">Le midi, du lundi au vendredi</span>
+      <h2>Le menu de la semaine</h2>
+      <p style="max-width:620px;margin:0 auto">Des plats maison, généreux et de saison. Pensez à réserver au <a href="tel:+33470327750"><strong>04 70 32 77 50</strong></a>&nbsp;!</p>
+    </div>
+    <div class="week reveal">
+      <div class="day"><h3>Lundi</h3><p>Assiette de cochonnaille</p><p>Filets de poulet à l'espagnol</p></div>
+      <div class="day"><h3>Mardi</h3><p>Saucisson brioché</p><p>Jambon aux épices, épinards</p></div>
+      <div class="day"><h3>Mercredi</h3><p>Pâté aux pommes de terre</p><p>Sauté de dinde à la provençale, pâtes</p></div>
+      <div class="day"><h3>Jeudi</h3><p>Jambon, macédoine</p><p>Dos de colin, riz</p></div>
+      <div class="day"><h3>Vendredi</h3><span class="price">Plat à 14 €</span><p class="star">Pot-au-feu</p></div>
+    </div>
+    <div class="menu-notes reveal">
+      <span>🍟 Tous nos plats sont servis avec frites ou légumes du jour</span>
+      <span>🧾 Nos formules du jour sont à voir directement sur place</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARTE DES PIZZAS ============ -->
+<section id="pizzas">
+  <div class="wrap">
+    <div class="pizza-head reveal">
+      <div>
+        <span class="eyebrow">Mercredi &amp; vendredi soir · 18h – 21h30</span>
+        <h2 style="margin:0">Nos pizzas</h2>
+        <div class="flag"></div>
+      </div>
+      <a href="tel:+33470327750" class="btn btn-red">📞 Commander : 04 70 32 77 50</a>
+    </div>
+    <p class="reveal" style="margin-top:16px">Sur place ou à emporter.</p>
+
+    <div class="pizzas reveal">
+      <div class="pz"><div class="pz-top"><span class="pz-name">Pinocchio<span class="tag">Enfant</span></span><span class="pz-dots"></span><span class="pz-price">10,00 €</span></div><p>Jambon, emmental, mozzarella, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Napolitaine</span><span class="pz-dots"></span><span class="pz-price">10,90 €</span></div><p>Coulis de tomate, oignons, emmental, mozzarella, anchois, origan, olives, câpres</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">La Reine</span><span class="pz-dots"></span><span class="pz-price">10,90 €</span></div><p>Jambon blanc, champignons, emmental, mozzarella, œuf, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Chorizo</span><span class="pz-dots"></span><span class="pz-price">10,90 €</span></div><p>Oignons, emmental, mozzarella, chorizo, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Marguerita</span><span class="pz-dots"></span><span class="pz-price">11,90 €</span></div><p>Oignons, emmental, mozzarella, lardons, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Troyenne</span><span class="pz-dots"></span><span class="pz-price">12,90 €</span></div><p>Oignons, pomme de terre, andouillette, olives, origan, emmental, mozzarella, crème fraîche</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Auvergnate</span><span class="pz-dots"></span><span class="pz-price">11,90 €</span></div><p>Bleu d'Auvergne, emmental, mozzarella, crème fraîche, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Chevrette</span><span class="pz-dots"></span><span class="pz-price">11,90 €</span></div><p>Chèvre, emmental, mozzarella, crème fraîche, échalotes, origan, olives (miel sur demande)</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Norvégienne</span><span class="pz-dots"></span><span class="pz-price">12,90 €</span></div><p>Échalotes, emmental, mozzarella, saumon fumé, crème fraîche, origan, olives, citron</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Fermière</span><span class="pz-dots"></span><span class="pz-price">11,90 €</span></div><p>Pomme de terre, filet de poulet, emmental, mozzarella, crème fraîche, oignons, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Romaine</span><span class="pz-dots"></span><span class="pz-price">11,90 €</span></div><p>Bœuf haché, champignons, ail, emmental, mozzarella, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Bougnat</span><span class="pz-dots"></span><span class="pz-price">12,00 €</span></div><p>Saint-Nectaire, jambon cru, emmental, mozzarella, crème fraîche, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Quatre Saisons</span><span class="pz-dots"></span><span class="pz-price">11,90 €</span></div><p>Oignons, légumes suivant saison, crème fraîche, pomme de terre, emmental, mozzarella, origan</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Flammekueche</span><span class="pz-dots"></span><span class="pz-price">11,90 €</span></div><p>Oignons, emmental, mozzarella, pomme de terre, lardons, origan, olives</p></div>
+      <div class="pz"><div class="pz-top"><span class="pz-name">Quatre Fromages</span><span class="pz-dots"></span><span class="pz-price">12,90 €</span></div><p>Bleu d'Auvergne, Saint-Nectaire, chèvre, emmental, mozzarella, crème fraîche, origan, olives</p></div>
+      <div class="pz special"><div class="pz-top"><span class="pz-name">🌳 La L'Orée du Bois</span><span class="pz-dots"></span><span class="pz-price">12,90 €</span></div><p>Composez vous-même votre pizza avec 5 ingrédients au choix de la carte</p></div>
+    </div>
+    <p class="base-note reveal">Base tomate ou crème sur toutes nos pizzas, à vous de choisir&nbsp;: précisez-le lors de votre commande… Bon appétit&nbsp;!</p>
   </div>
 </section>
 
