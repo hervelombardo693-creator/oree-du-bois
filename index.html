@@ -410,10 +410,146 @@
     .reveal.media{clip-path:none}
     .reveal h2::after,.flag{transform:none}
   }
+
+  /* =====================================================
+     MOTION DESIGN — VAGUE 2
+     ===================================================== */
+
+  /* Rideau de cabaret à l'ouverture */
+  .curtain{display:none}
+  .has-intro .curtain{display:block;position:fixed;inset:0;z-index:100;pointer-events:none;animation:gone 0s linear 3.1s forwards}
+  @keyframes gone{to{visibility:hidden}}
+  .c-left,.c-right{position:absolute;top:0;bottom:0;width:51%;
+    background:repeating-linear-gradient(90deg,#4a0d17 0,#7a1726 22px,#a8253a 40px,#7a1726 58px,#4a0d17 80px);
+    box-shadow:inset 0 -60px 80px rgba(0,0,0,.45)}
+  .c-left{left:0;animation:openL 1.4s cubic-bezier(.7,0,.25,1) 1.35s forwards}
+  .c-right{right:0;animation:openR 1.4s cubic-bezier(.7,0,.25,1) 1.35s forwards}
+  @keyframes openL{to{transform:translateX(-105%) skewX(10deg)}}
+  @keyframes openR{to{transform:translateX(105%) skewX(-10deg)}}
+  .c-top{position:absolute;top:0;left:0;right:0;height:64px;z-index:2;
+    background:radial-gradient(circle at 30px 64px,transparent 28px,#e9b949 29px,#e9b949 33px,#5e111c 34px) 0 0/60px 64px repeat-x;
+    animation:upTop .9s cubic-bezier(.7,0,.25,1) 1.5s forwards}
+  @keyframes upTop{to{transform:translateY(-100%)}}
+  .c-logo{position:absolute;inset:0;z-index:3;display:grid;place-content:center;text-align:center;color:#fff;
+    font-family:"Playfair Display",serif;font-weight:900;font-size:clamp(2.4rem,8vw,5.4rem);line-height:1.05;text-shadow:0 6px 30px rgba(0,0,0,.5);
+    animation:cLogoIn 1s var(--spring) .1s both,cLogoOut .45s ease 1.2s forwards}
+  .c-logo small{display:block;font-family:Pacifico,cursive;font-weight:400;font-size:.42em;color:var(--rose-clair);margin-top:10px}
+  @keyframes cLogoIn{from{opacity:0;transform:scale(.4) rotate(-6deg)}}
+  @keyframes cLogoOut{to{opacity:0;transform:scale(1.4);filter:blur(6px)}}
+  .has-intro .hero .chez{animation-delay:2s}
+  .has-intro .hero h1 .ch{animation-delay:calc(2.15s + var(--i) * 45ms)}
+  .has-intro .hero .tags span{animation-delay:calc(2.9s + var(--i) * 110ms)}
+  .has-intro .hero .rotator{animation-delay:3.25s}
+  .has-intro .hero .lead{animation-delay:3.45s}
+  .has-intro .hero .ctas{animation-delay:3.7s}
+  .has-intro .scroll-cue{animation-delay:4.1s}
+
+  /* Curseur personnalisé */
+  .cursor-ring,.cursor-dot{position:fixed;left:0;top:0;pointer-events:none;z-index:95;border-radius:50%;opacity:0;transition:opacity .3s}
+  .cursor-ring{width:38px;height:38px;margin:-19px 0 0 -19px;border:2px solid var(--rose);
+    transition:width .3s var(--spring),height .3s var(--spring),margin .3s var(--spring),background .3s,border-color .3s,opacity .3s}
+  .cursor-dot{width:7px;height:7px;margin:-3.5px 0 0 -3.5px;background:var(--rose)}
+  .cursor-on .cursor-ring,.cursor-on .cursor-dot{opacity:1}
+  .cursor-ring.hover{width:70px;height:70px;margin:-35px 0 0 -35px;background:rgba(255,95,168,.14);border-color:var(--or)}
+  .cursor-ring.down{width:26px;height:26px;margin:-13px 0 0 -13px}
+
+  /* Hero : « Chez Doudou & Lolo » qui ondule + mots qui tournent */
+  .wv{display:inline-block;white-space:pre;animation:wave 2.6s ease-in-out infinite;animation-delay:calc(var(--i) * 75ms)}
+  @keyframes wave{0%,55%,100%{transform:translateY(0)}25%{transform:translateY(-9px) rotate(-4deg)}}
+  .rotator{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.25rem,3vw,1.7rem);margin:-8px 0 22px;animation:rise 1s var(--ease) 1.35s both}
+  .words{display:inline-grid;vertical-align:bottom;perspective:400px;text-align:left}
+  .words b{grid-area:1/1;color:var(--or);font-weight:700;opacity:0;transform:rotateX(90deg) translateY(10px);transform-origin:50% 100%;
+    transition:opacity .45s,transform .6s var(--spring);white-space:nowrap}
+  .words b.on{opacity:1;transform:none}
+  .words b.out{opacity:0;transform:rotateX(-90deg) translateY(-10px)}
+
+  /* Bandeaux qui se tordent selon la vitesse du scroll */
+  .marquee{transform:rotate(-1.5deg) scale(1.03) skewX(var(--sk,0deg));transition:transform .4s var(--ease)}
+  .marquee-pink{transform:rotate(1.5deg) scale(1.03) skewX(calc(var(--sk,0deg) * -1))}
+
+  /* Texte géant en contour qui glisse au scroll */
+  .bigtext{overflow:hidden;padding:10px 0;pointer-events:none;user-select:none}
+  .bigtext span{display:block;white-space:nowrap;font-family:"Playfair Display",serif;font-weight:900;font-size:clamp(4rem,13vw,11rem);line-height:1;
+    color:transparent;-webkit-text-stroke:2px rgba(138,28,43,.22);will-change:transform}
+  .bigtext span b{color:rgba(233,185,73,.35);-webkit-text-stroke:0;font-weight:900}
+
+  /* Paragraphes qui apparaissent mot par mot */
+  .wr .w{display:inline-block;opacity:0;transform:translateY(14px);filter:blur(4px)}
+  .in .wr .w{animation:wordIn .55s var(--ease) forwards;animation-delay:calc(.35s + var(--w) * 22ms)}
+  @keyframes wordIn{to{opacity:1;transform:none;filter:none}}
+
+  /* Ondes au clic + explosions de paillettes */
+  .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:ripple .7s ease-out forwards;pointer-events:none}
+  @keyframes ripple{to{transform:scale(4);opacity:0}}
+  .burst{position:fixed;pointer-events:none;z-index:96;font-size:16px;animation:burst .9s cubic-bezier(.2,.8,.3,1) forwards}
+  @keyframes burst{0%{transform:translate(0,0) scale(.4)}70%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1) rotate(var(--r));opacity:0}}
+  .rain{position:fixed;top:-60px;pointer-events:none;z-index:97;animation:rain linear forwards}
+  @keyframes rain{to{transform:translateY(calc(100vh + 120px)) rotate(var(--r))}}
+
+  /* Emojis gourmands qui flottent dans les sections */
+  .has-floaty{position:relative;overflow:hidden}
+  .has-floaty > .wrap{position:relative;z-index:1}
+  .floaty{position:absolute;z-index:0;pointer-events:none;opacity:.16;animation:drift ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translate(0,0) rotate(-12deg)}to{transform:translate(var(--fx),var(--fy)) rotate(16deg)}}
+
+  /* Cabaret : projecteurs, boule à facettes, néon */
+  .spot{position:absolute;top:-8%;width:46%;height:120%;z-index:0;pointer-events:none;mix-blend-mode:screen;transform-origin:50% 0;
+    background:conic-gradient(from 168deg at 50% 0,transparent 0deg,rgba(255,214,234,.20) 10deg,rgba(255,255,255,.05) 18deg,transparent 24deg)}
+  .spot.s1{left:2%;animation:sweepL 7s ease-in-out infinite alternate}
+  .spot.s2{right:2%;animation:sweepR 8s ease-in-out infinite alternate}
+  @keyframes sweepL{from{transform:rotate(-28deg)}to{transform:rotate(22deg)}}
+  @keyframes sweepR{from{transform:rotate(26deg)}to{transform:rotate(-24deg)}}
+  .disco{position:absolute;top:0;left:9%;z-index:1;font-size:64px;line-height:1;pointer-events:none;transform-origin:50% -90px;animation:discoSwing 4s ease-in-out infinite}
+  .disco::before{content:"";position:absolute;left:50%;bottom:100%;width:2px;height:90px;background:rgba(255,255,255,.4)}
+  .disco span{display:inline-block;animation:spin 3s linear infinite;filter:drop-shadow(0 0 18px rgba(255,214,234,.9))}
+  @keyframes discoSwing{0%,100%{transform:translateY(90px) rotate(-6deg)}50%{transform:translateY(90px) rotate(6deg)}}
+  @media (max-width:900px){.disco{display:none}}
+  .cabaret h2{animation:neon 5s linear infinite}
+  @keyframes neon{0%,18%,22%,62%,64%,100%{text-shadow:0 0 6px #fff,0 0 18px rgba(255,95,168,.9),0 0 42px rgba(255,95,168,.6)}20%,63%{text-shadow:none}}
+
+  /* Détails brillants */
+  header .logo{background:linear-gradient(110deg,#fff 42%,#ffd36e 50%,#fff 58%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:logoShine 5s linear infinite}
+  header .logo small{color:transparent}
+  @keyframes logoShine{from{background-position:130% 0}to{background-position:-130% 0}}
+  .formules{position:relative}
+  .formules::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.2) 50%,transparent 65%);transform:translateX(-100%);animation:sweep 4.5s ease-in-out infinite}
+  @keyframes sweep{60%,100%{transform:translateX(100%)}}
+  #lightbox[open]{animation:lbIn .5s var(--spring)}
+  #lightbox[open]::backdrop{animation:fadeIn .35s ease}
+  @keyframes lbIn{from{opacity:0;transform:scale(.6) rotate(-3deg)}}
+  @keyframes fadeIn{from{opacity:0}}
+  footer{position:relative}
+  footer::before{content:"";position:absolute;left:0;right:0;top:-38px;height:40px;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40'%3E%3Cpath d='M0 22 Q50 2 100 22 T200 22 T300 22 T400 22 V40 H0Z' fill='%232a2224'/%3E%3C/svg%3E") 0 0/400px 40px repeat-x;
+    animation:waves 7s linear infinite}
+  @keyframes waves{to{background-position:400px 0}}
+
+  /* Mode Princesse (secret) */
+  html.princess{--bordeaux:#d6337a;--bordeaux-dark:#8e1f56;--creme:#fff0f7;--creme-2:#ffe0ef}
+  body{transition:background .8s}
+
+  @media (prefers-reduced-motion:reduce){
+    .curtain,.cursor-ring,.cursor-dot,.floaty,.spot,.disco,.burst,.rain{display:none !important}
+    .wr .w{opacity:1;transform:none;filter:none}
+    .words b{transition:none}
+  }
 </style>
+<script>
+  try {
+    if (!sessionStorage.getItem('oree-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('has-intro');
+      sessionStorage.setItem('oree-intro', '1');
+    }
+  } catch (e) {}
+</script>
 </head>
 <body>
+<div class="curtain" aria-hidden="true">
+  <div class="c-left"></div><div class="c-right"></div><div class="c-top"></div>
+  <div class="c-logo">À l'Orée du Bois<small>Chez Doudou &amp; Lolo</small></div>
+</div>
 <div class="progress" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div><div class="cursor-dot" aria-hidden="true"></div>
 
 <header>
   <div class="wrap nav">
@@ -442,6 +578,7 @@
     <div class="chez">Chez Doudou &amp; Lolo</div>
     <h1>À l'Orée du Bois</h1>
     <div class="tags"><span>Hôtel</span><span>Restaurant</span><span>Bar · Café</span><span>Tabac</span></div>
+    <p class="rotator">Ici, on vient pour <span class="words"><b class="on">le petit café ☕</b><b>le plat du jour 🍽️</b><b>les pizzas 🍕</b><b>une bonne nuit 🛏️</b><b>rigoler 😂</b><b>le tutu 🩰</b></span></p>
     <p class="lead">Votre adresse conviviale à Brugheas, à deux pas de Vichy. Café dès 7h, cuisine familiale le midi, pizzas le soir… et des soirées cabaret dont on parle dans tout l'Allier&nbsp;!</p>
     <div class="ctas">
       <a href="tel:+33470327750" class="btn btn-white">Réserver une table</a>
@@ -564,6 +701,8 @@
     <p class="base-note reveal">Base tomate ou crème sur toutes nos pizzas, à vous de choisir&nbsp;: précisez-le lors de votre commande… Bon appétit&nbsp;!</p>
   </div>
 </section>
+
+<div class="bigtext" aria-hidden="true"><span>Cuisine familiale <b>✦</b> Pizzas <b>✦</b> Bonne humeur <b>✦</b> Cuisine familiale <b>✦</b> Pizzas <b>✦</b></span></div>
 
 <!-- ============ BAR & TABAC ============ -->
 <section id="bar" class="alt">
@@ -693,6 +832,8 @@
     <p class="notice">Les dates des prochaines soirées sont annoncées au comptoir et par téléphone. Soirées réservées aux personnes majeures. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
   </div>
 </section>
+
+<div class="bigtext" aria-hidden="true"><span>Brugheas <b>✦</b> Allier <b>✦</b> Vichy <b>✦</b> Brugheas <b>✦</b> Allier <b>✦</b> Vichy <b>✦</b></span></div>
 
 <!-- ============ CONTACT ============ -->
 <section id="contact">
@@ -896,6 +1037,167 @@
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
+})();
+</script>
+
+<!-- ============ MOTION DESIGN — VAGUE 2 ============ -->
+<script>
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const fine = matchMedia('(pointer: fine)').matches;
+  const root = document.documentElement;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const intro = root.classList.contains('has-intro');
+  if (intro) setTimeout(() => $('.curtain')?.remove(), 3300);
+
+  /* « Chez Doudou & Lolo » qui ondule */
+  const chez = $('.hero .chez');
+  if (chez) {
+    const t = chez.textContent;
+    chez.setAttribute('aria-label', t);
+    chez.innerHTML = [...t].map((c, i) => `<span class="wv" aria-hidden="true" style="--i:${i}">${c === '&' ? '&amp;' : c}</span>`).join('');
+  }
+
+  /* Mots qui tournent dans le hero */
+  const words = $$('.words b'); let wi = 0;
+  if (words.length > 1) setTimeout(() => setInterval(() => {
+    const cur = words[wi];
+    cur.classList.remove('on'); cur.classList.add('out');
+    setTimeout(() => cur.classList.remove('out'), 650);
+    wi = (wi + 1) % words.length; words[wi].classList.add('on');
+  }, 2200), intro ? 4200 : 2400);
+
+  /* Curseur personnalisé (souris uniquement) */
+  if (fine) {
+    const ring = $('.cursor-ring'), dot = $('.cursor-dot');
+    let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y, raf = 0;
+    const loop = () => {
+      rx += (x - rx) * .2; ry += (y - ry) * .2;
+      ring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
+      raf = Math.abs(x - rx) + Math.abs(y - ry) > .4 ? requestAnimationFrame(loop) : 0;
+    };
+    addEventListener('pointermove', e => {
+      x = e.clientX; y = e.clientY;
+      dot.style.transform = `translate3d(${x}px,${y}px,0)`;
+      document.body.classList.add('cursor-on');
+      if (!raf) raf = requestAnimationFrame(loop);
+    }, { passive: true });
+    root.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on'));
+    document.addEventListener('pointerover', e => ring.classList.toggle('hover', !!e.target.closest('a, button, .zoomable, .polaroid, .pz, .card, .day')));
+    addEventListener('pointerdown', () => ring.classList.add('down'));
+    addEventListener('pointerup', () => ring.classList.remove('down'));
+  }
+
+  /* Paragraphes qui apparaissent mot par mot */
+  const splitWords = el => {
+    let w = 0; const nodes = [], tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    while (tw.nextNode()) nodes.push(tw.currentNode);
+    nodes.forEach(n => {
+      const frag = document.createDocumentFragment();
+      n.textContent.split(/([ \n\t]+)/).forEach(p => {
+        if (!p) return;
+        if (/^[ \n\t]+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+        const s = document.createElement('span'); s.className = 'w'; s.style.setProperty('--w', w++); s.textContent = p; frag.appendChild(s);
+      });
+      n.replaceWith(frag);
+    });
+    el.classList.add('wr');
+  };
+  $$('.split .reveal > p:first-of-type, .cabaret .intro, #menus .reveal > p').forEach(splitWords);
+
+  /* Pluie d'emojis */
+  const rain = (set, n = 45) => {
+    for (let i = 0; i < n; i++) {
+      const r = document.createElement('span'), dur = 2 + Math.random() * 2.5;
+      r.className = 'rain'; r.textContent = set[i % set.length];
+      Object.assign(r.style, { left: Math.random() * 100 + 'vw', fontSize: 18 + Math.random() * 26 + 'px', animationDuration: dur + 's', animationDelay: Math.random() * 1.2 + 's' });
+      r.style.setProperty('--r', (Math.random() * 720 - 360) + 'deg');
+      document.body.appendChild(r); setTimeout(() => r.remove(), (dur + 1.4) * 1000);
+    }
+  };
+
+  /* Explosion de paillettes + onde au clic */
+  const burst = (x, y, set) => {
+    for (let i = 0; i < 12; i++) {
+      const p = document.createElement('span'), a = Math.PI * 2 * i / 12 + Math.random() * .4, d = 60 + Math.random() * 70;
+      p.className = 'burst'; p.textContent = set[i % set.length];
+      Object.assign(p.style, { left: x - 8 + 'px', top: y - 8 + 'px' });
+      p.style.setProperty('--dx', Math.cos(a) * d + 'px'); p.style.setProperty('--dy', Math.sin(a) * d + 'px');
+      p.style.setProperty('--r', (Math.random() * 360 - 180) + 'deg');
+      document.body.appendChild(p); setTimeout(() => p.remove(), 950);
+    }
+  };
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.btn'), inCab = e.target.closest('.cabaret');
+    if (b) {
+      const r = b.getBoundingClientRect(), s = Math.max(r.width, r.height), rp = document.createElement('span');
+      rp.className = 'ripple';
+      Object.assign(rp.style, { width: s + 'px', height: s + 'px', left: e.clientX - r.left - s / 2 + 'px', top: e.clientY - r.top - s / 2 + 'px' });
+      b.appendChild(rp); setTimeout(() => rp.remove(), 700);
+    }
+    if (b || inCab) burst(e.clientX, e.clientY, inCab ? ['✨', '💖', '👑', '🩰', '⭐'] : ['✨', '⭐', '💫', '❤️']);
+  });
+
+  /* Surprise : cliquer sur la photo de Jean Doudou = pluie de tutus */
+  const pol = $('.polaroid');
+  if (pol) { pol.style.cursor = 'pointer'; pol.title = 'Cliquez-moi 💖'; pol.addEventListener('click', () => rain(['🩰', '💖', '👑', '✨', '💄'])); }
+
+  /* Secret : 5 clics rapides sur le logo = mode Princesse */
+  let clicks = 0, ct;
+  $('header .logo')?.addEventListener('click', e => {
+    clicks++; clearTimeout(ct); ct = setTimeout(() => clicks = 0, 1500);
+    if (clicks >= 5) {
+      e.preventDefault(); clicks = 0;
+      const on = root.classList.toggle('princess');
+      rain(on ? ['👑', '🩰', '💖', '🌸', '✨'] : ['🍺', '☕', '🍕', '🥖'], 60);
+    }
+  });
+
+  /* Emojis gourmands qui flottent dans les sections */
+  const sets = { '#menus': ['🥖', '🍷', '🥗', '🍲', '🧀', '🥕'], '#pizzas': ['🍕', '🧀', '🍅', '🌿', '🫒', '🍄'], '#bar': ['☕', '🍺', '🍷', '🍀', '🥐', '🍸'] };
+  const nF = innerWidth < 700 ? 4 : 8;
+  Object.entries(sets).forEach(([sel, set]) => {
+    const s = $(sel); if (!s) return;
+    s.classList.add('has-floaty');
+    for (let i = 0; i < nF; i++) {
+      const f = document.createElement('span');
+      f.className = 'floaty'; f.textContent = set[i % set.length]; f.setAttribute('aria-hidden', 'true');
+      Object.assign(f.style, { left: Math.random() * 92 + '%', top: Math.random() * 90 + '%', fontSize: 28 + Math.random() * 44 + 'px',
+        animationDuration: 6 + Math.random() * 8 + 's', animationDelay: -Math.random() * 8 + 's' });
+      f.style.setProperty('--fx', (Math.random() * 120 - 60) + 'px'); f.style.setProperty('--fy', (Math.random() * 120 - 60) + 'px');
+      s.prepend(f);
+    }
+  });
+
+  /* Cabaret : projecteurs et boule à facettes */
+  const cab = $('.cabaret');
+  if (cab) {
+    ['s1', 's2'].forEach(c => { const d = document.createElement('div'); d.className = 'spot ' + c; d.setAttribute('aria-hidden', 'true'); cab.prepend(d); });
+    const disco = document.createElement('div'); disco.className = 'disco'; disco.setAttribute('aria-hidden', 'true'); disco.innerHTML = '<span>🪩</span>';
+    cab.appendChild(disco);
+  }
+
+  /* Scroll : texte géant qui glisse + bandeaux qui se tordent selon la vitesse */
+  const bigs = $$('.bigtext span');
+  let lastY = scrollY, skT, tick = false;
+  const onS = () => {
+    const y = scrollY, v = y - lastY; lastY = y;
+    root.style.setProperty('--sk', Math.max(-10, Math.min(10, v * .4)) + 'deg');
+    clearTimeout(skT); skT = setTimeout(() => root.style.setProperty('--sk', '0deg'), 140);
+    bigs.forEach((b, i) => {
+      const r = b.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > innerHeight + 200) return;
+      const off = r.top - innerHeight / 2, dir = i % 2 ? 1 : -1;
+      b.style.transform = `translate3d(${-300 + dir * off * .4}px,0,0)`;
+    });
+    tick = false;
+  };
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onS); } }, { passive: true });
+  onS();
+
+  /* Titre de l'onglet quand on part */
+  const title = document.title;
+  document.addEventListener('visibilitychange', () => { document.title = document.hidden ? '🩰 Reviens vite chez Doudou & Lolo !' : title; });
 })();
 </script>
 </body>
